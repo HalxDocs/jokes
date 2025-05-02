@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Laugh Factory</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Laugh Factory</h1>
+        <p class="subtitle">Your daily dose of humor</p>
+    </header>
+    
+    <div class="joke-container">
+        <div class="loader"></div>
+        <div class="joke-text">Click the button below to get a joke!</div>
+        <div class="joke-type">general</div>
+    </div>
+    
+    <div class="controls">
+        <button id="getJokeBtn">
+            <i class="fas fa-laugh-beam"></i> Get Random Joke
+        </button>
+        <button id="getProgrammingJokeBtn" class="secondary">
+            <i class="fas fa-laptop-code"></i> Programming Joke
+        </button>
+        <button id="getDadJokeBtn" class="accent">
+            <i class="fas fa-grin-squint-tears"></i> Dad Joke
+        </button>
+        <button id="saveFavoriteBtn">
+            <i class="fas fa-heart"></i> Save to Favorites
+        </button>
+    </div>
+    
+    <div class="favorites-btn" id="favoritesBtn">
+        <i class="fas fa-star"></i>
+        <div class="favorites-count" id="favoritesCount">0</div>
+    </div>
+    
+    <div class="favorites-panel" id="favoritesPanel">
+        <div class="favorites-header">
+            <h3>Your Favorite Jokes</h3>
+            <button id="closeFavoritesBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="favorites-list" id="favoritesList">
+            <div class="empty-favorites">No favorites yet. Save some jokes!</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

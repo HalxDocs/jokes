@@ -1,0 +1,372 @@
+:root {
+    --primary: #6c5ce7;
+    --secondary: #a29bfe;
+    --dark: #2d3436;
+    --light: #f5f6fa;
+    --accent: #fd79a8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-image: radial-gradient(circle at top right, var(--secondary) 0%, transparent 20%), 
+                    radial-gradient(circle at bottom left, var(--accent) 0%, transparent 20%);
+    background-attachment: fixed;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.subtitle {
+    color: var(--dark);
+    opacity: 0.8;
+    font-size: 1.2rem;
+}
+
+.joke-container {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.joke-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.joke-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.joke-type {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+button:hover {
+    background: var(--dark);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button.secondary {
+    background: var(--secondary);
+}
+
+button.accent {
+    background: var(--accent);
+}
+
+.loader {
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--secondary);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.favorites-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--dark);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.favorites-btn i {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.favorites-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent);
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.favorites-panel {
+    position: fixed;
+    bottom: -400px;
+    right: 2rem;
+    width: 350px;
+    max-width: 90%;
+    background: white;
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 99;
+}
+
+.favorites-panel.show {
+    bottom: 0;
+}
+
+.favorites-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.favorites-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.favorite-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.remove-favorite {
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding: 0.2rem 0.5rem;
+}
+
+.empty-favorites {
+    color: #999;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* @media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .joke-container {
+        padding: 1.5rem;
+        min-height: 250px;
+    }
+    
+    .joke-text {
+        font-size: 1.2rem;
+    }
+    
+    .favorites-panel {
+        width: 90%;
+        right: 5%;
+    }
+} */
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .joke-container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .joke-container {
+        padding: 1.5rem;
+        min-height: 250px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .joke-text {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .controls {
+        gap: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .favorites-panel {
+        width: 95%;
+        right: 2.5%;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .joke-container {
+        padding: 1.2rem;
+        min-height: 200px;
+    }
+    
+    .joke-text {
+        font-size: 1.1rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.6rem;
+    }
+    
+    button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .favorites-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .favorites-count {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+    
+    .favorites-panel {
+        padding: 1rem;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 1rem;
+    }
+    
+    header {
+        margin-bottom: 1rem;
+    }
+    
+    .joke-container {
+        min-height: 150px;
+        margin-bottom: 1rem;
+    }
+    
+    .controls {
+        margin-bottom: 1rem;
+    }
+    
+    .favorites-panel {
+        max-height: 200px;
+    }
+}
